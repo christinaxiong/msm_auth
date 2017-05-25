@@ -87,5 +87,42 @@
         Delete
       </a>
     </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <form action="/create_bookmark" method="post">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Label and input for user_id -->
+          <div class="form-group">
+            <!-- <label for="user_id" class="control-label">
+              User
+            </label> -->
+
+            <% if current_user !=nil %>
+            <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id%>">
+            <% else %>
+            <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @bookmark.user_id %>">
+            <% end %>
+          </div>
+
+          <!-- Label and input for movie_id -->
+          <div class="form-group">
+            <!-- <label for="movie_id" class="control-label">
+              Movie
+            </label> -->
+            <input type="hidden" id="movie_id" name="movie_id" placeholder="Movie" class="form-control" value="<%=@movie.id %>">
+          </div>
+
+          <button class="btn btn-success">
+            Create Bookmark
+          </button>
+          or
+          <a href="/bookmarks">Cancel</a>
+        </form>
+      </div>
+    </div>
+
   </div>
 </div>
